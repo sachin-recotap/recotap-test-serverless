@@ -1,0 +1,87 @@
+org: iamsachin
+app: aws-node-test
+service: recotap-test-serverless
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ${file(./config.${opt:stage, 'dev'}.js):region} 
+
+# components:
+#   - ${file(another-function-component/serverless.yml)}
+
+layers:
+  configHelpersV2:
+    path: layers/config-helpers-2
+    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
+      - nodejs14.x
+    compatibleArchitectures: # optional, a list of architectures this layer is compatible with
+      - x86_64
+# functions:
+  # function1:
+  #   handler: index.handler
+    # layers:
+    #   - ${self.custom.layerArn.us-east-1}
+  # lifecycle:
+  #   handler: functions/reporting/index.handler
+  #   environment:
+  #     dev: ${file(./config.${opt:stage, 'dev'}.js):dev}
+  #     dev_arn: ${file(./config.${opt:stage, 'dev'}.js):dev_arn}
+  #   layers:
+  #     - ${file(./config.${opt:stage, 'dev'}.js):configLayerArn}
+  #     - ${file(./config.${opt:stage, 'dev'}.js):node_modulesLayerArn}
+
+  # attribution:
+  #   handler: functions/attribution/index.handler
+  #   environment:
+  #     dev: ${file(./config.${opt:stage, 'dev'}.js):dev}
+  #     dev_arn: ${file(./config.${opt:stage, 'dev'}.js):dev_arn}
+  #   layers:
+  #     - ${file(./config.${opt:stage, 'dev'}.js):configLayerArn}
+  #     - ${file(./config.${opt:stage, 'dev'}.js):node_modulesLayerArn}
+  #   memorySize: 256 # Set the memory size in megabytes
+  #   timeout: ${file(./config.${opt:stage, 'dev'}.js):timeout} # Set the timeout in seconds
+  #   role: ${file(./config.${opt:stage, 'dev'}.js):role}
+  #   vpc:
+  #     securityGroupIds: ${file(./config.${opt:stage, 'dev'}.js):vpc.securityGroupIds}  # Replace with your security group ID
+  #     subnetIds: ${file(./config.${opt:stage, 'dev'}.js):vpc.subnetIds}  # Replace with your subnet ID
+  #   vpcConfig:
+  #     vpcId:  ${file(./config.${opt:stage, 'dev'}.js):vpc.config} # Replace with your VPC ID
+
+  # reporting:
+  #   handler: reporting/reporting.handler
+  #   environment:
+  #     dev: ${file(./config.${opt:stage, 'dev'}.js):dev}
+  #     dev_arn: ${file(./config.${opt:stage, 'dev'}.js):dev_arn}
+  #   layers:
+  #     - ${file(./config.${opt:stage, 'dev'}.js):configLayerArn}
+  #     - ${file(./config.${opt:stage, 'dev'}.js):node_modulesLayerArn}
+  #   memorySize: 256 # Set the memory size in megabytes
+  #   timeout: ${file(./config.${opt:stage, 'dev'}.js):timeout} # Set the timeout in seconds
+  #   role: ${file(./config.${opt:stage, 'dev'}.js):role}
+  #   vpc:
+  #     securityGroupIds: ${file(./config.${opt:stage, 'dev'}.js):vpc.securityGroupIds}  # Replace with your security group ID
+  #     subnetIds: ${file(./config.${opt:stage, 'dev'}.js):vpc.subnetIds}  # Replace with your subnet ID
+  #   vpcConfig:
+  #     vpcId:  ${file(./config.${opt:stage, 'dev'}.js):vpc.config} # Replace with your VPC ID
+      
+  # indieTest:
+  #   handler: testIndividual/reporting.handler
+  #   environment:
+  #     dev: ${file(./config.${opt:stage, 'dev'}.js):dev}
+  #     dev_arn: ${file(./config.${opt:stage, 'dev'}.js):dev_arn}
+  #   layers:
+  #     - ${file(./config.${opt:stage, 'dev'}.js):configLayerArn}
+  #     - ${file(./config.${opt:stage, 'dev'}.js):node_modulesLayerArn}
+  #   memorySize: 256 # Set the memory size in megabytes
+  #   timeout: ${file(./config.${opt:stage, 'dev'}.js):timeout} # Set the timeout in seconds
+  #   role: ${file(./config.${opt:stage, 'dev'}.js):role}
+  #   vpc:
+  #     securityGroupIds: ${file(./config.${opt:stage, 'dev'}.js):vpc.securityGroupIds}  # Replace with your security group ID
+  #     subnetIds: ${file(./config.${opt:stage, 'dev'}.js):vpc.subnetIds}  # Replace with your subnet ID
+  #   vpcConfig:
+  #     vpcId:  ${file(./config.${opt:stage, 'dev'}.js):vpc.config} # Replace with your VPC ID
+
+package:
+  individually: true
